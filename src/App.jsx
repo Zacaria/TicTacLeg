@@ -1,12 +1,15 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>Coucouf</div>
-    );
-  }
-}
+import CellContainer from './containers/CellContainer';
+
+const onCellClick = coordinates => console.log('clicked :', coordinates);
+
+const App = () => (
+  <Provider store={configureStore()}>
+    <CellContainer value={0} onClick={onCellClick} />
+  </Provider>
+);
 
 export default App;

@@ -1,0 +1,9 @@
+extends: airbnb
+env:
+  browser: true
+  node: true
+  mocha: true
+plugins:
+  - react
+  - jsx-a11y
+  - import

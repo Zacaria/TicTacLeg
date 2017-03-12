@@ -1,12 +1,8 @@
 import React from 'react';
 
-const Cell = ({onClick, value}) => {
-  return (
-    <div onClick={onClick}>
-      {value}
-    </div>
-  )
-};
+const Cell = ({ onClick, value }) => (
+  <input type="checkbox" checked={!!value} onClick={() => onClick(value)} />
+);
 
 Cell.propTypes = {
   value: React.PropTypes.string,
