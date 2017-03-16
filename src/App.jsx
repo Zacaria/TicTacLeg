@@ -6,7 +6,7 @@ import CellContainer from './containers/CellContainer';
 
 const App = () => (
   <Provider store={configureStore()}>
-    <CellContainer coordinates={0}/>
+    <CellContainer coordinates={0} />
   </Provider>
 );
 

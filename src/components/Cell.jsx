@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Cell = ({ onClick, value }) => (
-  <input type="checkbox" checked={value} onChange={(e) => onClick(value, e)} />
+  <input type="checkbox" checked={value} onChange={onClick} />
 );
 
 Cell.propTypes = {
@@ -10,7 +10,7 @@ Cell.propTypes = {
 };
 
 Cell.defaultProps = {
-  value: '',
+  value: false,
 };
 
 export default Cell;
