@@ -4,11 +4,9 @@ import configureStore from './store/configureStore';
 
 import CellContainer from './containers/CellContainer';
 
-const onCellClick = coordinates => console.log('clicked :', coordinates);
-
 const App = () => (
   <Provider store={configureStore()}>
-    <CellContainer value={0} onClick={onCellClick} />
+    <CellContainer coordinates={0}/>
   </Provider>
 );
 
