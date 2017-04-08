@@ -9,9 +9,6 @@ import Cell from '../components/Cell';
 class CellContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: '',
-    };
   }
 
   render() {
@@ -27,7 +24,7 @@ CellContainer.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  clickCell: () => dispatch(clickCell()),
+  clickCell: () => dispatch(clickCell(this.props.coordinates)),
 });
 
 const mapStateToProps = (state, { coordinates }) => ({
