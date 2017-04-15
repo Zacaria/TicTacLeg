@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getCellValue } from '../redux';
-import { clickCell } from '../redux/modules/game';
+
 import Cell from '../components/Cell';
 
 
@@ -17,30 +16,30 @@ class CellContainer extends Component {
 
   handleClick() {
     if (!this.props.value) {
-      this.props.clickCell(this.props.coordinates);
+      this.props.dispatchClick();
     }
   }
 
   render() {
     const { value } = this.props;
     return (
-      <Cell onClick={this.handleClick} value={value} />
+      <Cell onClick={this.handleClick} value={!!(value)} />
     );
   }
 }
 
 CellContainer.propTypes = {
-  clickCell: PropTypes.func.isRequired,
-  value: PropTypes.bool.isRequired,
-  coordinates: PropTypes.number.isRequired,
-};
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
 
-const mapDispatchToProps = dispatch => ({
-  clickCell: bindActionCreators(clickCell, dispatch),
-});
+  dispatchClick: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state, { coordinates }) => ({
   value: getCellValue(state)(coordinates),
+});
+
+const mapDispatchToProps = (dispatch, { onClick, coordinates }) => ({
+  dispatchClick: () => dispatch(onClick(coordinates)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CellContainer);

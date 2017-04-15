@@ -16,7 +16,7 @@ const game = (state = DEFAULT_GAME_STATE, action) => {
     case CLICK_CELL:
       return {
         cells: state.cells.map((cell, index) =>
-          (index === action.coordinates ? true : cell),
+          (index === action.coordinates ? action.player.name : cell),
         ),
       };
     case INIT_GAME:
@@ -28,14 +28,16 @@ const game = (state = DEFAULT_GAME_STATE, action) => {
 
 export default game;
 
-export const clickCell = coordinates => (dispatch) => {
+export const clickCell = player => coordinates => (dispatch) => {
   dispatch({
     type: CLICK_CELL,
     coordinates,
+    player,
   });
 
   return dispatch(nextPlayer());
 };
+
 
 export const initGame = () => ({
   type: INIT_GAME,

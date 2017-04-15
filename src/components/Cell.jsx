@@ -6,7 +6,7 @@ const Cell = ({ onClick, value }) => (
 );
 
 Cell.propTypes = {
-  value: PropTypes.bool,
+  value: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
