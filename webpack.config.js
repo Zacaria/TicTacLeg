@@ -4,10 +4,10 @@ const BUILD_DIR = path.resolve(__dirname, 'build');
 const APP_DIR = path.resolve(__dirname, 'src');
 
 const config = {
-  entry: APP_DIR + '/index.jsx',
+  entry: `${APP_DIR}/index.jsx`,
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   cache: false,
   module: {
@@ -16,9 +16,9 @@ const config = {
         test: /\.jsx?$/,
         include: APP_DIR,
         use: [
-          'babel-loader'
+          'babel-loader',
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.html$/,
@@ -26,15 +26,15 @@ const config = {
         use: {
           loader: 'file-loader',
           query: {
-            name: '[name].[ext]'
+            name: '[name].[ext]',
           },
         },
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     // you can now require('file') instead of require('file.coffee')
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.json', '.jsx'],
   },
   externals: {
     'react/addons': 'react',
@@ -44,8 +44,9 @@ const config = {
   stats: {
     colors: {
       green: '\u001b[32m',
-    }
+    },
   },
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: './src',
     historyApiFallback: true,
@@ -65,9 +66,9 @@ const config = {
       warnings: true,
       colors: {
         green: '\u001b[32m',
-      }
+      },
     },
-  }
+  },
 };
 
 module.exports = config;
