@@ -15,23 +15,22 @@ class CellContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick() {
+    this.props.clickCell(this.props.coordinates);
+  }
+
   render() {
     const { value } = this.props;
     return (
       <Cell onClick={this.handleClick} value={value} />
     );
   }
-
-  handleClick(e) {
-    console.log(e.target);
-    this.props.clickCell(this.props.coordinates);
-  }
 }
 
 CellContainer.propTypes = {
   clickCell: PropTypes.func.isRequired,
   value: PropTypes.bool.isRequired,
-
+  coordinates: PropTypes.number.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

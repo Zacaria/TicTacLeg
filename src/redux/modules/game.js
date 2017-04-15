@@ -12,10 +12,10 @@ const INIT_GAME = 'INIT_GAME';
 const game = (state = DEFAULT_GAME_STATE, action) => {
   switch (action.type) {
     case CLICK_CELL:
-      const cells = [...state.cells];
-      cells[action.coordinates] = true;
       return {
-        cells,
+        cells: state.cells.map((cell, index) =>
+          (index === action.coordinates ? true : cell),
+        ),
       };
     case INIT_GAME:
       return DEFAULT_GAME_STATE;
