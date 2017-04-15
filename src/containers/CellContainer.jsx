@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getCellValue } from '../redux';
@@ -9,22 +11,31 @@ import Cell from '../components/Cell';
 class CellContainer extends Component {
   constructor(props) {
     super(props);
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
+    const { value } = this.props;
     return (
-      <Cell onClick={this.props.clickCell} value={this.props.value} />
+      <Cell onClick={this.handleClick} value={value} />
     );
+  }
+
+  handleClick(e) {
+    console.log(e.target);
+    this.props.clickCell(this.props.coordinates);
   }
 }
 
 CellContainer.propTypes = {
   clickCell: PropTypes.func.isRequired,
   value: PropTypes.bool.isRequired,
+
 };
 
 const mapDispatchToProps = dispatch => ({
-  clickCell: () => dispatch(clickCell(this.props.coordinates)),
+  clickCell: bindActionCreators(clickCell, dispatch),
 });
 
 const mapStateToProps = (state, { coordinates }) => ({

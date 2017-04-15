@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Cell = ({ onClick, value }) => (
   <input type="checkbox" checked={value} onChange={onClick} />
 );
 
 Cell.propTypes = {
-  value: React.PropTypes.bool,
-  onClick: React.PropTypes.func.isRequired,
+  value: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 };
 
 Cell.defaultProps = {

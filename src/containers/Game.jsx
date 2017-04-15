@@ -15,9 +15,9 @@ const Game = () => (
       <CellContainer coordinates={5} />
     </div>
     <div>
+      <CellContainer coordinates={6} />
       <CellContainer coordinates={7} />
       <CellContainer coordinates={8} />
-      <CellContainer coordinates={9} />
     </div>
 
   </div>
