@@ -1,26 +1,42 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import CellContainer from './CellContainer';
+import Grid from '../components/Grid';
 
-const Game = () => (
+import * as playersActions from '../redux/modules/players';
+
+const players = {
+  cross: {
+    name: 'Zac',
+  },
+  circle: {
+    name: 'Gael',
+  },
+};
+
+const Game = ({ setPlayers }) => (
   <div>
+    <button onClick={() => setPlayers(players)}>Set players</button>
     <div>
-      <CellContainer coordinates={0} />
-      <CellContainer coordinates={1} />
-      <CellContainer coordinates={2} />
+      <div>Cross : {players.cross.name}</div>
+      <div>Circle : {players.circle.name}</div>
     </div>
-    <div>
-      <CellContainer coordinates={3} />
-      <CellContainer coordinates={4} />
-      <CellContainer coordinates={5} />
-    </div>
-    <div>
-      <CellContainer coordinates={6} />
-      <CellContainer coordinates={7} />
-      <CellContainer coordinates={8} />
-    </div>
-
+    <Grid />
   </div>
 );
 
-export default Game;
+Game.propTypes = {
+  setPlayers: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => ({
+  setPlayers: bindActionCreators(playersActions.setPlayers, dispatch),
+});
+
+// const mapStateToProps = (state) => ({
+//
+// });
+
+export default connect(null, mapDispatchToProps)(Game);

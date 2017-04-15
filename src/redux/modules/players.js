@@ -22,11 +22,13 @@ const players = (state = DEFAULT_GAME_STATE, action) => {
 
 export default players;
 
-export const setPlayers = ({ cross, circle }) =>
-  dispatch =>
-   dispatch({
-     type: SET_PLAYERS,
-     payload: { cross, circle },
-   }).then(() => dispatch(initGame()));
+export const setPlayers = ({ cross, circle }) => (dispatch) => {
+  dispatch(initGame());
+
+  return dispatch({
+    type: SET_PLAYERS,
+    payload: { cross, circle },
+  });
+};
 
 export const getPlayers = state => state.players;
