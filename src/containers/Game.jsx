@@ -6,17 +6,9 @@ import { connect } from 'react-redux';
 import Grid from '../components/Grid';
 
 import * as playersActions from '../redux/modules/players';
+import * as shapes from '../shapes';
 
-const players = {
-  cross: {
-    name: 'Zac',
-  },
-  circle: {
-    name: 'Gael',
-  },
-};
-
-const Game = ({ setPlayers }) => (
+const Game = ({ current: { name }, setPlayers, players }) => (
   <div>
     <button onClick={() => setPlayers(players)}>Set players</button>
     <div>
@@ -24,15 +16,23 @@ const Game = ({ setPlayers }) => (
       <div>Circle : {players.circle.name}</div>
     </div>
     <Grid />
+    <div>Current dude <strong>{name}</strong></div>
   </div>
 );
 
 Game.propTypes = {
   setPlayers: PropTypes.func.isRequired,
+  current: shapes.player.isRequired,
+  players: shapes.players.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   setPlayers: bindActionCreators(playersActions.setPlayers, dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(Game);
+const mapStateToProps = state => ({
+  current: playersActions.getCurrentPlayer(state),
+  players: playersActions.getPlayers(state),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

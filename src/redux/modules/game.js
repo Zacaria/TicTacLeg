@@ -1,3 +1,5 @@
+import { nextPlayer } from './players';
+
 const DEFAULT_GAME_STATE = {
   cells: [
     false, false, false,
@@ -26,10 +28,14 @@ const game = (state = DEFAULT_GAME_STATE, action) => {
 
 export default game;
 
-export const clickCell = coordinates => ({
-  type: CLICK_CELL,
-  coordinates,
-});
+export const clickCell = coordinates => (dispatch) => {
+  dispatch({
+    type: CLICK_CELL,
+    coordinates,
+  });
+
+  return dispatch(nextPlayer());
+};
 
 export const initGame = () => ({
   type: INIT_GAME,

@@ -16,7 +16,9 @@ class CellContainer extends Component {
   }
 
   handleClick() {
-    this.props.clickCell(this.props.coordinates);
+    if (!this.props.value) {
+      this.props.clickCell(this.props.coordinates);
+    }
   }
 
   render() {

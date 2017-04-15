@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import { initGame } from './game';
 
 const DEFAULT_GAME_STATE = {
@@ -5,13 +6,16 @@ const DEFAULT_GAME_STATE = {
     name: 'Zac',
   },
   circle: {
-    name: 'Gael',
+    name: 'Gaël',
   },
 };
 
-const SET_PLAYERS = 'SET_PLAYERS';
+const DEFAULT_CURRENT_PLAYER = DEFAULT_GAME_STATE.cross;
 
-const players = (state = DEFAULT_GAME_STATE, action) => {
+const SET_PLAYERS = 'SET_PLAYERS';
+export const NEXT_PLAYER = 'NEXT_PLAYER';
+
+const list = (state = DEFAULT_GAME_STATE, action) => {
   switch (action.type) {
     case SET_PLAYERS:
       return action.payload;
@@ -19,6 +23,22 @@ const players = (state = DEFAULT_GAME_STATE, action) => {
       return state;
   }
 };
+
+const current = (state = DEFAULT_CURRENT_PLAYER, action) => {
+  switch (action.type) {
+    case SET_PLAYERS:
+      return DEFAULT_CURRENT_PLAYER;
+    case NEXT_PLAYER:
+      if (state === DEFAULT_CURRENT_PLAYER) {
+        return DEFAULT_GAME_STATE.circle;
+      }
+      return DEFAULT_GAME_STATE.cross;
+    default:
+      return state;
+  }
+};
+
+const players = combineReducers(({ list, current }));
 
 export default players;
 
@@ -31,4 +51,10 @@ export const setPlayers = ({ cross, circle }) => (dispatch) => {
   });
 };
 
-export const getPlayers = state => state.players;
+export const nextPlayer = () => ({
+  type: NEXT_PLAYER,
+});
+
+export const getPlayers = state => state.players.list;
+
+export const getCurrentPlayer = state => state.players.current;
