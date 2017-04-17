@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { initGame } from './game';
+import { initGame } from './grid';
 
 const DEFAULT_GAME_STATE = {
   cross: {

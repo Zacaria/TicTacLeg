@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Grid from '../components/Grid';
 import PlayerName from '../components/PlayerName';
 
-import { clickCell } from '../redux/modules/game';
+import { clickCell } from '../redux/modules/grid';
 import * as playersActions from '../redux/modules/players';
 import * as shapes from '../shapes';
 

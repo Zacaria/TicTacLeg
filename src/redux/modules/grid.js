@@ -1,32 +1,28 @@
 import { nextPlayer } from './players';
 
-const DEFAULT_GAME_STATE = {
-  cells: [
+const DEFAULT_GRID_STATE = [
     false, false, false,
     false, false, false,
     false, false, false,
-  ],
-};
+];
 
 const CLICK_CELL = 'CLICK_CELL';
 const INIT_GAME = 'INIT_GAME';
 
-const game = (state = DEFAULT_GAME_STATE, action) => {
+const grid = (state = DEFAULT_GRID_STATE, action) => {
   switch (action.type) {
     case CLICK_CELL:
-      return {
-        cells: state.cells.map((cell, index) =>
-          (index === action.coordinates ? action.player.name : cell),
-        ),
-      };
+      return state.map((cell, index) =>
+        (index === action.coordinates ? action.player.name : cell),
+      );
     case INIT_GAME:
-      return DEFAULT_GAME_STATE;
+      return DEFAULT_GRID_STATE;
     default:
       return state;
   }
 };
 
-export default game;
+export default grid;
 
 export const clickCell = player => coordinates => (dispatch) => {
   dispatch({
@@ -38,10 +34,9 @@ export const clickCell = player => coordinates => (dispatch) => {
   return dispatch(nextPlayer());
 };
 
-
 export const initGame = () => ({
   type: INIT_GAME,
 });
 
-export const getGame = state => state.game;
-export const getCellValue = state => coordinates => state.cells[coordinates];
+export const getGrid = state => state.grid;
+export const getCellValue = state => coordinates => state[coordinates];

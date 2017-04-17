@@ -1,18 +1,19 @@
 import { combineReducers } from 'redux';
 
-import game, * as fromGame from './modules/game';
+import grid, * as fromGrid from './modules/grid';
 import players, * as fromPlayers from './modules/players';
 
 const app = combineReducers({
-  game,
+  grid,
   players,
 });
 
 export default app;
 
 export const getCellValue = state => (coordinates) => {
-  const gameState = fromGame.getGame(state);
-  return fromGame.getCellValue(gameState)(coordinates);
+  const gridState = fromGrid.getGrid(state);
+  console.log(gridState);
+  return fromGrid.getCellValue(gridState)(coordinates);
 };
 
 export const getPlayers = state => fromPlayers.getPlayers(state);
