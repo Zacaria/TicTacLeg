@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getCellValue } from '../redux';
+import { getCellValue, isCellClickable } from '../redux';
 
 import Cell from '../components/Cell';
-
 
 class CellContainer extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class CellContainer extends Component {
   }
 
   handleClick() {
-    if (!this.props.value) {
+    if (this.props.isClickable) {
       this.props.dispatchClick();
     }
   }
@@ -23,19 +22,21 @@ class CellContainer extends Component {
   render() {
     const { value } = this.props;
     return (
-      <Cell onClick={this.handleClick} value={!!(value)} />
+      <Cell onClick={this.handleClick} value={value} />
     );
   }
 }
 
 CellContainer.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  isClickable: PropTypes.bool.isRequired,
 
   dispatchClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, { coordinates }) => ({
   value: getCellValue(state)(coordinates),
+  isClickable: isCellClickable(state)(coordinates),
 });
 
 const mapDispatchToProps = (dispatch, { onClick, coordinates }) => ({
