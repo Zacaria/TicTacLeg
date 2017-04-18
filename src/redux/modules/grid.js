@@ -1,19 +1,19 @@
 import { nextPlayer } from './players';
 
 const DEFAULT_GRID_STATE = [
-    false, false, false,
-    false, false, false,
-    false, false, false,
+  false, false, false,
+  false, false, false,
+  false, false, false,
 ];
 
 const CLICK_CELL = 'CLICK_CELL';
-const INIT_GAME = 'INIT_GAME';
+export const INIT_GAME = 'INIT_GAME';
 
 const grid = (state = DEFAULT_GRID_STATE, action) => {
   switch (action.type) {
     case CLICK_CELL:
       return state.map((cell, index) =>
-        (index === action.coordinates ? action.player.name : cell),
+        (index === action.coordinates ? action.player.type : cell),
       );
     case INIT_GAME:
       return DEFAULT_GRID_STATE;
@@ -32,11 +32,11 @@ export const clickCell = player => coordinates => (dispatch) => {
   });
 
   return dispatch(nextPlayer());
+  // return dispatch(checkWinner(currentGrid, player));
 };
 
 export const initGame = () => ({
   type: INIT_GAME,
 });
 
-export const getGrid = state => state.grid;
 export const getCellValue = state => coordinates => state[coordinates];
