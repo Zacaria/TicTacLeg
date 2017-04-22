@@ -7,6 +7,6 @@ export const player = PropTypes.shape({
 
 export const players = PropTypes.arrayOf(player);
 
-export const value = PropTypes.oneOf([PropTypes.string, PropTypes.bool]);
+export const value = PropTypes.oneOfType([PropTypes.string, PropTypes.bool]);
 
 export const grid = PropTypes.arrayOf(value);

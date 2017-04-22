@@ -87,7 +87,6 @@ export const checkWinner = ({ grid, player }) => (dispatch) => {
       winner: player,
     });
   }
-
   // return nextPlayer();
 };
 
