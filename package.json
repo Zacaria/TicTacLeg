@@ -7,7 +7,7 @@
     "lint": "eslint -f codeframe --ext js,jsx src",
     "test": "karma start karma.conf.js",
     "precommit": "lint-staged",
-    "prettier": "prettier --single-quote --trailing-comma es5 --tab-width 4 --write \"src/**/*.js{,x}\""
+    "prettier": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js{,x}\""
   },
   "author": "Zacaria",
   "license": "MIT",

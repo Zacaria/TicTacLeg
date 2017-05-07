@@ -12,8 +12,8 @@ import * as gridActions from '../redux/modules/grid';
 import * as playersActions from '../redux/modules/players';
 import * as shapes from '../shapes';
 
-
-const isCurrentPlayer = (currentPlayer, player) => currentPlayer.type === player.type;
+const isCurrentPlayer = (currentPlayer, player) =>
+  currentPlayer.type === player.type;
 
 class Game extends Component {
   componentDidUpdate() {
@@ -46,11 +46,19 @@ class Game extends Component {
       <div>
         <button onClick={() => setPlayers(players)}>Set players</button>
         <div>
-          <div>Cross :
-            <PlayerName bold={isCurrentPlayer(currentPlayer, players[0])} name={players[0].name} />
+          <div>
+            Cross :
+            <PlayerName
+              bold={isCurrentPlayer(currentPlayer, players[0])}
+              name={players[0].name}
+            />
           </div>
-          <div>Circle :
-            <PlayerName bold={isCurrentPlayer(currentPlayer, players[1])} name={players[1].name} />
+          <div>
+            Circle :
+            <PlayerName
+              bold={isCurrentPlayer(currentPlayer, players[1])}
+              name={players[1].name}
+            />
           </div>
         </div>
         {winner && winner.type && <WinnerBlock winner={winner} />}
@@ -72,7 +80,8 @@ Game.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   setPlayers: bindActionCreators(playersActions.setPlayers, dispatch),
-  checkWinner: (grid, currentPlayer) => dispatch(playersActions.checkWinner(grid, currentPlayer)),
+  checkWinner: (grid, currentPlayer) =>
+    dispatch(playersActions.checkWinner(grid, currentPlayer)),
 });
 
 const mapStateToProps = state => ({

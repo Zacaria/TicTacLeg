@@ -1,4 +1,5 @@
-const isInCells = (cells, player) => cells.filter(c => c === player).length === cells.length;
+const isInCells = (cells, player) =>
+  cells.filter(c => c === player).length === cells.length;
 
 const hasRow = (grid, player) => {
   for (let j = 0; j < 9; j += 3) {
@@ -23,9 +24,9 @@ const hasDiag = (grid, player) => {
   return isInCells(diag1, player) || isInCells(diag2, player);
 };
 
-const resolve = ({ grid, player }) => (
-  hasRow(grid, player.type) || hasCol(grid, player.type) || hasDiag(grid, player.type)
-);
-
+const resolve = ({ grid, player }) =>
+  hasRow(grid, player.type) ||
+  hasCol(grid, player.type) ||
+  hasDiag(grid, player.type);
 
 export default resolve;

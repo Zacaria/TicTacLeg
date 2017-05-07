@@ -21,9 +21,7 @@ class CellContainer extends Component {
 
   render() {
     const { value } = this.props;
-    return (
-      <Cell onClick={this.handleClick} value={value} />
-    );
+    return <Cell onClick={this.handleClick} value={value} />;
   }
 }
 

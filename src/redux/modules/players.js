@@ -53,13 +53,12 @@ const winner = (state = {}, action) => {
   }
 };
 
-const players = combineReducers(({ list, current, winner }));
+const players = combineReducers({ list, current, winner });
 
 export default players;
 
-export const setPlayers = ([cross, circle]) => (dispatch) => {
+export const setPlayers = ([cross, circle]) => dispatch => {
   dispatch(initGame());
-
 
   return dispatch({
     type: SET_PLAYERS,
@@ -71,8 +70,7 @@ export const nextPlayer = () => ({
   type: NEXT_PLAYER,
 });
 
-
-export const checkWinner = ({ grid, player }) => (dispatch) => {
+export const checkWinner = ({ grid, player }) => dispatch => {
   dispatch({
     type: 'CHECK_WINNER',
     grid,

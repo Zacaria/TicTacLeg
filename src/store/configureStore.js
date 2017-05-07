@@ -10,12 +10,11 @@ const configureStore = () => {
     middlewares.push(createLogger());
   }
   /* eslint-disable no-underscore-dangle */
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   /* eslint-enable */
 
-  return createStore(
-    app, composeEnhancers(applyMiddleware(...middlewares)),
-  );
+  return createStore(app, composeEnhancers(applyMiddleware(...middlewares)));
 };
 
 export default configureStore;
