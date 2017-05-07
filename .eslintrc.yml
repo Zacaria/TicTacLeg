@@ -7,3 +7,8 @@ plugins:
   - react
   - jsx-a11y
   - import
+prettier/prettier:
+  - error
+  - trailingComma: es5
+    singleQuote": true
+    tabWidth: 4
